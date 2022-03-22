@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: hkusu/slack-integration@v1
         with:
-          slack-token: xoxb-2388867539-3297862251168-TbHb1TGkwoAUaB3iGwNnRYw7
+          slack-token: ${{ secrets.SLACK_TOKEN }}
           channel: '#ojt_bluegreen_internship_202203'
           subscribe-pulls: true
           subscribe-issues: true
