@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'sam-app
+
+  Sample SAM Template for sam-app
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ueda-sam-swagger
+      AccessControl: Private
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: false
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: false
+      WebsiteConfiguration:
+        IndexDocument: index.html
+  SampleBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: ueda-sam-swagger
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: AllowAll
+          Action: s3:GetObject
+          Effect: Allow
+          Resource:
+          - arn:aws:s3:::ueda-sam-swagger
+          - arn:aws:s3:::ueda-sam-swagger/*
+          Principal: '*'
+          Condition:
+            StringEquals:
+              aws:UserAgent: Amazon CloudFront
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Origins:
+        - Id: ueda-sam-swagger
+          DomainName: ueda-sam-swagger.s3.ap-northeast-1.amazonaws.com
+          CustomOriginConfig:
+            OriginProtocolPolicy: http-only
+        DefaultCacheBehavior:
+          TargetOriginId: ueda-sam-swagger
+          ForwardedValues:
+            QueryString: false
+          DefaultTTL: 300
+          MaxTTL: 300
+          MinTTL: 300
+          ViewerProtocolPolicy: redirect-to-https
+Outputs:
+  S3BucketName:
+    Value:
+      Ref: S3Bucket
