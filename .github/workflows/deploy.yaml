@@ -5,14 +5,16 @@ on:
     branches:
       - main
 
+env:
+  AWS_ACCESS_KEY_ID: ASIAUCN5ORWRIX576XUN
+  AWS_SECRET_ACCESS_KEY: Hy2Q5gnpHz4zFUH+hVjDuQqfQOud5E+PNw7dbzc4
+  AWS_SESSION_TOKEN: FwoGZXIvYXdzEMr//////////wEaDEAX1Rs2zFsLqVt8kyLYAU2UDQ0X64rKVOc0k3db80WO3MyokoyMXbQDB4ANvUMqtlHH4GbW7gHkCIL4oXoF3QxUKJ+LO0927LBT7t7g6fmtgbgvQsc5LsSO+wM1ryR2g3qjwCRc5/3cwQPGGSgnpO3nTkyyt+9OudiZT5VpUgV620dUV1wE9NOqsyghz/3lzjKgD5OgxODtNWlAtyAjHIborZ1ycAXQod+4J6AbUdIFIVyOIGhp5Ju1IJMEBAmHP/5AHjEQfWKkZGlHnlbDNCuRta8Jlcl5dYdfwh10O9FpOScmyvHvtijureuRBjIybIhnBqatUY8u0TCrhJT1tqEd2xgEdeNQLsbIEkgMF3VDRK08GoCenQTv2l7gaPDMsY8=
+  AWS_PROFILE: aws-saml-login
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.0
       - uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-1
       - run: aws s3 cp ./assets/yaml/swagger.yaml s3://ueda-sam-swagger
