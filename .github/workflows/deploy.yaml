@@ -16,4 +16,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.0.0
-      - run: aws s3 cp ./assets/yaml/swagger.yaml s3://ueda-sam-swagger
+      - run: aws s3 cp ./assets/yaml/swagger.yaml s3://ueda-sam-swagger/assets/yaml/
