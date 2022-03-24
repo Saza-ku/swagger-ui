@@ -21,6 +21,7 @@ Resources:
         RestrictPublicBuckets: false
       WebsiteConfiguration:
         IndexDocument: index.html
+
   SampleBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
@@ -38,6 +39,7 @@ Resources:
           Condition:
             StringEquals:
               aws:UserAgent: Amazon CloudFront
+
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -56,7 +58,8 @@ Resources:
           MaxTTL: 300
           MinTTL: 300
           ViewerProtocolPolicy: redirect-to-https
-Outputs:
-  S3BucketName:
-    Value:
-      Ref: S3Bucket
+        WebACLId: !Ref WebACLForCloudFrontArn
+
+Parameters:
+  WebACLForCloudFrontArn:
+    Type: String

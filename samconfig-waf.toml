@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "ueda-sam-swagger-waf"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1ds860kq1kctx"
+s3_prefix = "ueda-sam-swagger-waf"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+disable_rollback = false
+image_repositories = []
