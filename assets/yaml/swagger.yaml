@@ -51,6 +51,12 @@ paths:
     get:
       consumes:
       - application/json
+      parameters:
+      - description: ID token
+        in: header
+        name: authorization
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -77,6 +83,11 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/handler.TodoForm'
+      - description: ID token
+        in: header
+        name: authorization
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -107,6 +118,11 @@ paths:
         name: id
         required: true
         type: integer
+      - description: ID token
+        in: header
+        name: authorization
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -140,6 +156,11 @@ paths:
         name: id
         required: true
         type: integer
+      - description: ID token
+        in: header
+        name: authorization
+        required: true
+        type: string
       produces:
       - application/json
       responses:
